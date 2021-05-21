@@ -1,0 +1,24 @@
+\begin{thebibliography}{1}
+
+\bibitem{orthogonal}
+Nikolaus Hansen and Andreas Ostermeier.
+\newblock Completely derandomized self-adaptation in evolution strategies.
+\newblock {\em Evol. Comput.}, 9(2):159--195, June 2001.
+
+\bibitem{MathWorks}
+Mathworks output functions.
+\newblock Available at
+  \url{https://www.mathworks.com/help/releases/R2015b/optim/ug/output-functions.html}.
+
+\bibitem{pureCMAES}
+Cmaes implementation.
+\newblock Available at
+  \url{http://cma.gforge.inria.fr/cmaes_sourcecode_page.html#matlab}.
+
+\bibitem{derivativefree}
+Anne Auger, Nikolaus Hansen, Jorge M.~Perez Zerpa, Raymond Ros, and Marc
+  Schoenauer.
+\newblock Experimental comparisons of derivative free optimization algorithms.
+\newblock {\em CoRR}, abs/1005.5631, 2010.
+
+\end{thebibliography}

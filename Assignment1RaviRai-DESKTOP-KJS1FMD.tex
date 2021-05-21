@@ -1,0 +1,43 @@
+\documentclass[sigconf, 10pt]{acmart}
+
+
+\title{\textbf{Optimization Exploration of the Sphere}}
+\author{Ravinder Rai}
+\date{\today}
+
+
+\begin{document} 
+
+
+
+\begin{abstract}
+Using the Matlab function fminunc, we explore the problem of finding the minimum value of for a specific variant of the sphere, namely the non-quadratic sphere.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+In this paper, we consider the problem of optimizing the sphere test problem. More precisely, we use a Matlab function to minimize a variant of the sphere test problem known as the non-quadratic sphere. When experimenting with the built-in Matlab function, we vary certain parameters and observe how the changes affect the optimization results. In regards to the non-quadratic sphere, this paper shows how increasing power and dimension can increase the cost of optimizing the problem. We expect that increasing both dimension and the power of the sphere (independently) simply increases the cost and function values. 
+
+
+\section{Preliminaries}
+\label{sec:pre}
+It is important to highlight the tools used to complete the experiments in this paper. The most important tool used was the fminunc function in Matlab. This function tries to minimize a given function/test problem (with no constraints), which in this case was some variants of the sphere function. The fminunc function follows one of two algorithms, one being the trust-region algorithm, and the other being the quasi-newton algorithm. The trust-region variant requires gradients to be supplied, and since this was never done in any of the experiments in this paper, the quasi-newton algorithm was used. The quasi-newton algorithm works by approximating the Hessian matrix, so that is can make optimal steps in the direction that would give the minimum function value. The Hessian matrix approximation is updated as the algorithm iterates, but there are three different ways to update the Hessian, and all three of these Hessian updates give different results, and are compared in the following sections. The first and second methods are called the bfgs and dfp methods.The third is simply steepdesc.
+
+The test problem being considered in this paper is of the form: $f(x)=(x^tx)^{\beta/2}$, where $x$ is an $n$ dimensional column vector. $x^t$ represents the transpose, so that $x^tx$ is essentially the dot product, which gives a scaler value. The sphere becomes non-quadratic when we introduce and vary the value of $\beta$, which is one of two main parameters to vary (the other being the dimension, $n$).
+
+\section{Algorithm}
+\label{algorithm}
+The algorithm used to get the results below utilizes two main functions. The first function's goal is to actually complete the minimization of the non-quadratic sphere. The first step in this algorithm is to set our initial starting $x$ value to an $n$ dimensional column vector filled with random elements ranging from $0$ to $1$. Then we set our options for Matlabs fminunc function, where we set it to display a plot of function values once it gathers the data. We also set the Hessian update option, the maximum number of functional evaluations allowed, the optimality tolerance, and the objective limit. We mainly consider optimizing the problem by reaching a target value of zero (since this is the minimum of the sphere), so we set the optimality tolerance to be small and the maximum number of function evaluations to be high, so that the algorithm does not stop trying to find the minimum early. Next, inside this function, we define a function that stores the x values, functional values, iteration values, and the number of function evaluations at each step. We must do this because fminunc does not save these values itself for further plotting later on. Finally we define another function inside this first main function, that being the objective function, which is the non-quadratic sphere as defined above. Overall, this function will take arguments: $n$ for the dimension, $\beta$ for the power, a target function value, and the Hessian update.
+
+The second algorithm is also a function but it uses the first algorithm to compute many runs with a specified value of $\beta$, but with different target values. The dimension is fixed here, and it computes run-times so that we can construct a cumulative running time distribution plot. The first step in this algorithm is to do many runs in of the first algorithm with a fixed beta, but with a range of different target values. The runtime is gathered for each run and stored into an array. Then we compute how many of these run-times were below some run-time value, say run-time $t_0$, and divide this number by the total number of runs. This number will be equal to the number of successful problems (the number of problems that reached their target in time $t_0$ or less), and will be one data point in the cumulative run-time distribution plot. This will then be repeated for a range of run-times, giving a full cumulative run-time distribution plot for a specified value of beta. This algorithm will also do this whole process three times in total, one for each different type of Hessian update, and they will all be plotted in a final plot.
+
+\section{Results and Discussion}
+\label{result}
+
+
+
+
+
+\end{document}
